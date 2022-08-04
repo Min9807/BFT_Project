@@ -1,6 +1,6 @@
 {% load static %}
 
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 {% include 'head.html' %}
 <title>
 {% block title %}
@@ -8,119 +8,69 @@
 {% endblock title %}
 </title>
   <body>
-    <!-- ====== Navbar Section Start -->
-    <div
-      class="ud-header absolute top-0 left-0 z-40 flex w-full items-center bg-transparent"
-    >
+    <!-- ====== Header Start ====== -->
+    <header class="ud-header">
       <div class="container">
-        <div class="relative -mx-4 flex items-center justify-between">
-          <div class="w-60 max-w-full px-4">
-            <a href="{% url 'main:home' %}" class="navbar-logo block w-full py-5">
-              <img
-                src="{% static 'assets/images/logo/logo-white.svg' %}"
-                alt="없다고 뜸"
-                class="header-logo w-full"
-              />
-            </a>
-          </div>
-          <div class="flex w-full items-center justify-between px-4">
-            <div>
-              <button
-                id="navbarToggler"
-                class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
-              >
-                <span
-                  class="relative my-[6px] block h-[2px] w-[30px] bg-white"
-                ></span>
-                <span
-                  class="relative my-[6px] block h-[2px] w-[30px] bg-white"
-                ></span>
-                <span
-                  class="relative my-[6px] block h-[2px] w-[30px] bg-white"
-                ></span>
+        <div class="row">
+          <div class="col-lg-12">
+            <nav class="navbar navbar-expand-lg">
+              <a class="navbar-brand" href="{% url 'main:home' %}">
+                <img src="{% static 'assets/images/logo/logo.svg' %}" alt="Logo" />
+              </a>
+              <button class="navbar-toggler">
+                <span class="toggler-icon"> </span>
+                <span class="toggler-icon"> </span>
+                <span class="toggler-icon"> </span>
               </button>
-              <nav
-                id="navbarCollapse"
-                class="absolute right-4 top-full hidden w-full max-w-[250px] rounded-lg bg-white py-5 shadow-lg lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:py-0 lg:px-4 lg:shadow-none xl:px-6"
-              >
-                <ul class="blcok lg:flex">
-                  <li class="group relative">
-                    <a
-                      href="{% url 'main:home' %}"
-                      class="ud-menu-scroll mx-8 flex py-2 text-base text-dark group-hover:text-primary lg:mr-0 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70"
-                    >
-                      Home
-                    </a>
-                  </li>
 
-                  <li class="submenu-item group relative">
-                    <a
-                      href="javascript:void(0)"
-                      class="relative mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 lg:text-white lg:after:right-0 lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12"
-                    >
-                      커리어 탐색
-                    </a>
-                    <div
-                      class="submenu relative top-full left-0 hidden w-[250px] rounded-sm bg-white p-4 transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full"
-                    >
-                      <a
-                        href="https://www.work.go.kr/consltJobCarpa/jobPsyExamNew/jobPsyExamYouthList.do"
-                        class="block rounded py-[10px] px-4 text-sm text-body-color hover:text-primary"
-                      >
-                        워크넷 간단 검사(청소년)
-                      </a>
-                      <a
-                        href="https://www.work.go.kr/consltJobCarpa/jobPsyExamNew/jobPsyExamAdultList.do"
-                        class="block rounded py-[10px] px-4 text-sm text-body-color hover:text-primary"
-                      >
-                        워크넷 간단 검사(성인)
-                      </a>
-                      <a
-                        href="https://www.work.go.kr/consltJobCarpa/srch/jobRecommend/jobRecommend.do"
-                        class="block rounded py-[10px] px-4 text-sm text-body-color hover:text-primary"
-                      >
-                        워크넷 간단 검사(직무기반 직업추천)
-                      </a>
-                    </div>
+              <div class="navbar-collapse">
+                <ul id="nav" class="navbar-nav mx-auto">
+                  <li class="nav-item">
+                    <a class="ud-menu-scroll" href="{% url 'main:home' %}">Home</a>
                   </li>
-                  <li class="group relative">
-                    <a
-                      href="#team"
-                      class="ud-menu-scroll mx-8 flex py-2 text-base text-dark group-hover:text-primary lg:mr-0 lg:ml-7 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12"
-                    >
-                      직업 및 마이크로디그리 탐색
-                    </a>
+                  <li class="nav-item nav-item-has-children">
+                    <a href="javascript:void(0)"> 커리어 탐색 </a>
+                    <ul class="ud-submenu">
+                      <li class="ud-submenu-item">
+                        <a href="https://www.work.go.kr/consltJobCarpa/jobPsyExamNew/jobPsyExamYouthList.do" class="ud-submenu-link">
+                          워크넷 간단 검사(청소년)
+                        </a>
+                      </li>
+                      <li class="ud-submenu-item">
+                        <a href="https://www.work.go.kr/consltJobCarpa/jobPsyExamNew/jobPsyExamAdultList.do" class="ud-submenu-link">
+                          워크넷 간단 검사(성인)
+                        </a>
+                      </li>
+                      <li class="ud-submenu-item">
+                        <a href="https://www.work.go.kr/consltJobCarpa/srch/jobRecommend/jobRecommend.do" class="ud-submenu-link">
+                          워크넷 간단 검사(직무기반 직업추천)
+                        </a>
+                      </li>
+                    </ul>
                   </li>
-                  <li class="group relative">
-                    <a
-                      href="#contact"
-                      class="ud-menu-scroll mx-8 flex py-2 text-base text-dark group-hover:text-primary lg:mr-0 lg:ml-7 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12"
-                    >
-                      강좌 검색
-                    </a>
+                  <li class="nav-item">
+                    <a class="ud-menu-scroll" href="#about">직업 및 마이크로디그리 탐색</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="ud-menu-scroll" href="#pricing">강좌 검색</a>
                   </li>
                 </ul>
-              </nav>
-            </div>
-            <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
-              <a
-                href="{% url 'accounts:signin' %}"
-                class="loginBtn py-3 px-7 text-base font-medium text-white hover:opacity-70"
-              >
-                Sign In
-              </a>
-              <a
-                href="{% url 'accounts:signup' %}"
-                class="signUpBtn rounded-lg bg-white bg-opacity-20 py-3 px-6 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-100 hover:text-dark"
-              >
-                Sign Up
-              </a>
-            </div>
+              </div>
+
+              <div class="navbar-btn d-none d-sm-inline-block">
+                <a href="{% url 'accounts:signin' %}" class="ud-main-btn ud-login-btn">
+                  Sign In
+                </a>
+                <a class="ud-main-btn ud-white-btn" href="{% url 'accounts:signup' %}">
+                  Sign Up
+                </a>
+              </div>
+            </nav>
           </div>
         </div>
       </div>
-    </div>
-    <!-- ====== Navbar Section End -->
+    </header>
+    <!-- ====== Header End ====== -->
 
     <!-- ====== 시작 -->
     {% block content %}
@@ -130,19 +80,15 @@
 
     {% include 'footer.html' %}
 
-    <!-- ====== Back To Top Start -->
-    <a
-      href="javascript:void(0)"
-      class="back-to-top fixed bottom-8 right-8 left-auto z-[999] hidden h-10 w-10 items-center justify-center rounded-md bg-primary text-white shadow-md transition duration-300 ease-in-out hover:bg-dark"
-    >
-      <span
-        class="mt-[6px] h-3 w-3 rotate-45 border-t border-l border-white"
-      ></span>
+    <!-- ====== Back To Top Start ====== -->
+    <a href="javascript:void(0)" class="back-to-top">
+      <i class="lni lni-chevron-up"> </i>
     </a>
-    <!-- ====== Back To Top End -->
+    <!-- ====== Back To Top End ====== -->
 
-    <!-- ====== All Scripts -->
-
+    <!-- ====== All Javascript Files ====== -->
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/wow.min.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
     <script>
       // ==== for menu scroll

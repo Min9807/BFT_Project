@@ -5,7 +5,7 @@
   window.onscroll = function () {
     const ud_header = document.querySelector(".ud-header");
     const sticky = ud_header.offsetTop;
-    const logo = document.querySelector(".header-logo");
+    const logo = document.querySelector(".navbar-brand img");
 
     if (window.pageYOffset > sticky) {
       ud_header.classList.add("sticky");
@@ -15,9 +15,9 @@
 
     // === logo change
     if (ud_header.classList.contains("sticky")) {
-      logo.src = "assets/images/logo/logo.svg";
+      logo.src = "assets/images/logo/logo-2.svg";
     } else {
-      logo.src = "assets/images/logo/logo-white.svg";
+      logo.src = "assets/images/logo/logo.svg";
     }
 
     // show or hide the back-top-top button
@@ -32,39 +32,26 @@
     }
   };
 
-  // ===== responsive navbar
-  let navbarToggler = document.querySelector("#navbarToggler");
-  const navbarCollapse = document.querySelector("#navbarCollapse");
-
-  navbarToggler.addEventListener("click", () => {
-    navbarToggler.classList.toggle("navbarTogglerActive");
-    navbarCollapse.classList.toggle("hidden");
-  });
-
   //===== close navbar-collapse when a  clicked
-  document
-    .querySelectorAll("#navbarCollapse ul li:not(.submenu-item) a")
-    .forEach((e) =>
-      e.addEventListener("click", () => {
-        navbarToggler.classList.remove("navbarTogglerActive");
-        navbarCollapse.classList.add("hidden");
-      })
-    );
+  let navbarToggler = document.querySelector(".navbar-toggler");
+  const navbarCollapse = document.querySelector(".navbar-collapse");
 
-  // ===== Sub-menu
-  const submenuItems = document.querySelectorAll(".submenu-item");
-  submenuItems.forEach((el) => {
-    el.querySelector("a").addEventListener("click", () => {
-      el.querySelector(".submenu").classList.toggle("hidden");
-    });
+  document.querySelectorAll(".ud-menu-scroll").forEach((e) =>
+    e.addEventListener("click", () => {
+      navbarToggler.classList.remove("active");
+      navbarCollapse.classList.remove("show");
+    })
+  );
+  navbarToggler.addEventListener("click", function () {
+    navbarToggler.classList.toggle("active");
+    navbarCollapse.classList.toggle("show");
   });
 
-  // ===== Faq accordion
-  const faqs = document.querySelectorAll(".single-faq");
-  faqs.forEach((el) => {
-    el.querySelector(".faq-btn").addEventListener("click", () => {
-      el.querySelector(".icon").classList.toggle("rotate-180");
-      el.querySelector(".faq-content").classList.toggle("hidden");
+  // ===== submenu
+  const submenuButton = document.querySelectorAll(".nav-item-has-children");
+  submenuButton.forEach((elem) => {
+    elem.querySelector("a").addEventListener("click", () => {
+      elem.querySelector(".ud-submenu").classList.toggle("show");
     });
   });
 

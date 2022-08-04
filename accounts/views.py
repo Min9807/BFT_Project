@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import User
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib import auth
+from django.contrib import auth, messages
 
 # Create your views here.
 # 로그인 부분
@@ -18,9 +18,10 @@ def signin(request):
             print('맞음')
             auth.login(request, user)
             return redirect('main:home') # 아이디 비번 맞으면 다른곳으로 들어감
-        else: # 아이디 비번 틀렸을 때
-            print('틀림')
-            return render(request, 'accounts/signin.html', {'error':'아이디 또는 비밀번호가 틀렸을 때'})
+        else:
+            # 딕셔너리에 에러메세지를 전달하고 다시 login.html 화면으로 돌아간다.
+            messages.warning(request, '아이디 또는 비밀번호를 확인하세요.')
+            return redirect('accounts:signin')
     return render(request, 'accounts/signin.html')
 
 # 로그아웃 부분
@@ -32,10 +33,10 @@ def logout(request):
 # 회원가입
 def signup(request):
     if request.method == 'POST':
-        if User.objects.filter(username=request.POST['nickname']).exists():  # 닉네임 중복 체크
-            return render(request, 'accounts/signup.html', {'error': '중복된 닉네임 입니다.'})
-        elif User.objects.filter(username=request.POST['email']).exists():  # 이메일 중복 체크
-            return render(request, 'accounts/signup.html', {'error': '중복된 이메일 입니다.'})
+        if User.objects.filter(username=request.POST['email']).exists():  # 이메일 중복 체크
+            messages.warning(request, '중복된 이메일 입니다.')
+        elif User.objects.filter(username=request.POST['nickname']).exists():  # 닉네임 중복 체크
+            messages.warning(request, '중복된 닉네임 입니다.')
         if request.POST['password'] == request.POST['password_check']: # 비번 같은지 체크
             user = User.objects.create_user( # 새로운 학습자를 만들어서 DB에 저장되는것이다.
                                             last_name=request.POST['last_name'],
