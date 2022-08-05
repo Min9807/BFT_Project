@@ -35,7 +35,7 @@ def signup(request):
     if request.method == 'POST':
         if User.objects.filter(username=request.POST['email']).exists():  # 이메일 중복 체크
             messages.warning(request, '중복된 이메일 입니다.')
-        elif User.objects.filter(username=request.POST['nickname']).exists():  # 닉네임 중복 체크
+        elif User.objects.filter(first_name=request.POST['nickname']).exists():  # 닉네임 중복 체크
             messages.warning(request, '중복된 닉네임 입니다.')
         if request.POST['password'] == request.POST['password_check']: # 비번 같은지 체크
             user = User.objects.create_user( # 새로운 학습자를 만들어서 DB에 저장되는것이다.

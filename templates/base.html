@@ -26,7 +26,7 @@
               <div class="navbar-collapse">
                 <ul id="nav" class="navbar-nav mx-auto">
                   <li class="nav-item">
-                    <a class="ud-menu-scroll" href="{% url 'main:home' %}">Home</a>
+                    <a class="ud-submenu-link" href="{% url 'main:home' %}">Home</a>
                   </li>
                   <li class="nav-item nav-item-has-children">
                     <a href="javascript:void(0)"> 커리어 탐색 </a>
@@ -49,10 +49,10 @@
                     </ul>
                   </li>
                   <li class="nav-item">
-                    <a class="ud-menu-scroll" href="#about">직업 및 마이크로디그리 탐색</a>
+                    <a class="ud-submenu-link" href="{% url 'search:search' %}">직업 및 마이크로디그리 탐색</a>
                   </li>
                   <li class="nav-item">
-                    <a class="ud-menu-scroll" href="#pricing">강좌 검색</a>
+                    <a class="ud-submenu-link" href="{% url 'search:search' %}">강좌 검색</a>
                   </li>
                 </ul>
               </div>
